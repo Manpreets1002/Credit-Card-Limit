@@ -31,19 +31,7 @@ class DataTransformation:
             test_data = pd.read_csv(test_path)
             logging.info("Test Data Read Successfully")
 
-            df.to_csv(self.ingestion_config.raw_data_path)
-            logging.info("Raw Data Saved")
-
-            train_data,test_data = train_test_split(df,random_state=42,test_size=0.8)
-
-            train_data.to_csv(self.ingestion_config.train_data_path)
-            logging.info("Train Data Saved")
-
-            test_data.to_csv(self.ingestion_config.test_data_path)
-            logging.info("Test Data Saved")
-
-            logging.info("All data saved successfully")
-            logging.info("Ingestion Pipeline Completed")
+            logging.info("Tranformation Pipeline Completed")
 
             return self.ingestion_config.train_data_path,self.ingestion_config.test_data_path
         except Exception as e:
