@@ -43,3 +43,21 @@ def upload_path(preprocessor_path,model_path):
     conn.execute(inser_command)
 
     connection_disable(engine)
+
+def get_path():
+    engine = connection_enable()
+    conn = engine.connect()
+
+    get_path_query = """
+    SELECT * FROM paths order by "created_at" desc limit 1;
+    """
+
+    result = conn.execute(get_path_query)
+
+    connection_disable(engine)
+    if result is None:
+        return None,None
+    
+    preprocessor_path, model_path = result
+
+    return preprocessor_path, model_path
